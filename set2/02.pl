@@ -8,24 +8,50 @@
 
 use strict;
 use warnings;
-use Win32::OLE qw(in);
-use Cwd qw();
+use Win32::OLE::Const;
 
 # set the parameters
-@ARGV = ("my-excel.xlsx");
+@ARGV = ( "my-excel.xlsx", "excel-not-found.xlsx" );
 
 # open the current application or a new one
 my $excelAppl = Win32::OLE->GetActiveObject('Excel.Application')
   || Win32::OLE->new( 'Excel.Application', 'Quit' );
 $excelAppl->{visible} = 1;    # 0 = excel is invisible ; 1 = excel is visible
 
+# create a filesystem object
+my $fso = Win32::OLE->new("Scripting.FileSystemObject");
+
 for my $workbookname (@ARGV) {
 
-    my $path = Cwd::cwd();
-    print "\n$path/" . $workbookname;
+    # check if file exists
+    if ( $fso->FileExists($workbookname) ) {
 
-    # open the given workbook
-    my $workbook = $excelAppl->Workbooks->Open($path . "/" . $workbookname);
+        # get the absolute path to the file
+        my $workbookpath = $fso->GetAbsolutePathName($workbookname);
+
+        # open the given workbook
+        print "Opening workbook " . $workbookpath . "\n";
+        my $workbook = $excelAppl->{Workbooks}->Open($workbookpath);
+    }
+    else {
+
+        # create the name for the new workbook
+        my $directorypath = $fso->GetAbsolutePathName(".");
+        my $workbookpath  = $directorypath . "\\" . $workbookname;
+
+        # open a new workbook
+        print "Could not find " . $workbookpath . "\n";
+        print "Opening new workbook \n";
+        my $workbook = $excelAppl->{Workbooks}->Add();
+
+        # save the new workbook
+        $workbook->SaveAs($workbookpath);
+    }
 }
 
-<STDIN>
+# wait for user input before closing
+print "Press any key to close Excel...";
+<STDIN>;
+
+# close the Excel application
+$excelAppl->Quit;
