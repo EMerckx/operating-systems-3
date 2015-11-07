@@ -48,7 +48,8 @@ my $namespace = "root/cimv2";
 # The value of $Win32::OLE::Warn determines what happens when an OLE error occurs.
 # - If it's 0, the error is ignored.
 # - If it's 2, or if it's 1 and the script is running under -w, the Win32::OLE module invokes Carp::carp().
-# - If $Win32::OLE::Warn is set to 3, Carp::croak() is invoked and the program dies immediately.$Win32::OLE::Warn = 3;
+# - If $Win32::OLE::Warn is set to 3, Carp::croak() is invoked and the program dies immediately.
+$Win32::OLE::Warn = 3;
 
 # set the current computer name
 my $computerName = ".";    # or "localhost"
@@ -63,7 +64,7 @@ my $wbemServices = $locator->ConnectServer( $computerName, $namespace );
 print join(" / ", Win32::OLE->QueryObjectType($wbemServices) ) . "\n";
 
 
-#------------------------------------------------------------------------------------------------------------------# or init directly
+#------------------------------------------------------------------------------------------------------# or init directly
 # my $wbemServices = Win32::OLE->GetObject("winmgmts://$computerName/$namespace");
 # print join(" / ",Win32::OLE->QueryObjectType($WbemServices)) , "\n";
 
