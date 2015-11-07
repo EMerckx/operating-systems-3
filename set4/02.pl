@@ -63,7 +63,7 @@ my $wbemServices = $locator->ConnectServer( $computerName, $namespace );
 print join(" / ", Win32::OLE->QueryObjectType($wbemServices) ) . "\n";
 
 
-#----------------------------------------------------------------------------------------------------------------------------------------# or init directly
+#------------------------------------------------------------------------------------------------------------------# or init directly
 # my $wbemServices = Win32::OLE->GetObject("winmgmts://$computerName/$namespace");
 # print join(" / ",Win32::OLE->QueryObjectType($WbemServices)) , "\n";
 
