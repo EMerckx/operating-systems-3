@@ -7,6 +7,10 @@
 
 # If we search in WMI CIM Studio for the WMI object that represents a directory,
 # we find the class "Win32_Directory"
+# To find all the instances of "Win32_Directory",
+# we use a WQL query to get them fast
+# SELECT * FROM Win32_Directory
+# and we find "Win32_Directory.Name="c:\\"
 
 use strict;
 use warnings;
