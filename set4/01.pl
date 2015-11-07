@@ -1,4 +1,5 @@
-# De volledige WMI infrastructuur kan, ondermeer vanuit scripttalen,
+# Oefening 1
+# De volledige WMI infrastructuur kan, ondermeer vanuit scripttalen,
 # benaderd worden via COM objecten met een automation interface.
 # De verzameling van deze COM objecten wordt de WMI Scripting Library genoemd.
 # Zoek informatie over de COM objecten en hun onderlinge relatie op
