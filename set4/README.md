@@ -64,3 +64,8 @@ Een tweede interessante methode gebruikt een WQL query:
 Je kan de WQL-query vooraf uittesten in WbemTest of in WMI CIM Studio.
 
 Controleer in de MSDN-Library het type van de return-waarde van beide methodes. Merk op dat beide methodes nog andere parameters hebben, die echter optioneel zijn (zie verder).
+
+Een andere veelgebruikte methode van het SWbemServices object die resulteert in een SWbemObjectSet (ook al voldoet er maar één enkel WMI object aan de selectie) is:
+
+* de AssociatorsOf(relpad) method met als eerste parameter het relatieve objectpad van het doelobject (dat overeenkomt met het argument dat tussen de akkolades van een ASSOCIATORS OF {…} WQL query geplaatst wordt).
+Dezelfde collectie kan bekomen worden door eerst het SWbemObject te initaliseren en vervolgens de Associators_( ) methode uit te voeren. Beide methodes hebben nog tien optionele parameters (mogen ingevuld worden met undef, of via een anonieme hash doorgegeven worden). De eerste vier optionele parameters komen overeen met de argumenten van de diverse predikaten in de overeenkomstige WHERE clausule van de ASSOCIATORS OF {…} WQL query, nl AssocClass = …, ResultClass = …, ResultRole = …, Role = …. De vijfde en zesde optionele parameter komen overeen met de waarden van de predikaten ClassDefsOnly en SchemaOnly. Meer informatie vind je in de documentatie van deze methodes.
