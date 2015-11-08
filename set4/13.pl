@@ -13,7 +13,7 @@ use Win32::OLE::Const;
 use Win32::OLE 'in';
 
 # script stops and gives error message is something goes wrong
-#$Win32::OLE::Warn = 3;
+$Win32::OLE::Warn = 3;
 
 # variables
 my $computername = ".";
