@@ -26,6 +26,7 @@ print "->AssociatorsOf() \n\n";
 
 # get the associators
 # if the sixth optional parameter is not defined, we get an empty set of "instances"
+# sixth optional parameter = SchemaOnly
 my $associators1 =
   $wbemservices->AssociatorsOf( $classname, undef, undef, undef, undef, undef,
     1 );
