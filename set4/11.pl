@@ -10,7 +10,6 @@
 use strict;
 use warnings;
 use Win32::OLE::Const;
-use Data::Dumper;
 
 # script stops and gives error message is something goes wrong
 $Win32::OLE::Warn = 3;
