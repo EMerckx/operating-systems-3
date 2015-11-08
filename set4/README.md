@@ -82,3 +82,26 @@ Een andere veelgebruikte methode van het SWbemServices object die resulteert in 
 
 * de AssociatorsOf(relpad) methode met als eerste parameter het relatieve objectpad van het doelobject (dat overeenkomt met het argument dat tussen de akkolades van een ASSOCIATORS OF {…} WQL query geplaatst wordt).
 Dezelfde collectie kan bekomen worden door eerst het SWbemObject te initaliseren en vervolgens de Associators_( ) methode uit te voeren. Beide methodes hebben nog tien optionele parameters (mogen ingevuld worden met undef, of via een anonieme hash doorgegeven worden). De eerste vier optionele parameters komen overeen met de argumenten van de diverse predikaten in de overeenkomstige WHERE clausule van de ASSOCIATORS OF {…} WQL query, nl AssocClass = …, ResultClass = …, ResultRole = …, Role = …. De vijfde en zesde optionele parameter komen overeen met de waarden van de predikaten ClassDefsOnly en SchemaOnly. Meer informatie vind je in de documentatie van deze methodes.
+
+## Opvragen van attributen van een SWbemObject
+
+Om een attribuutwaarde op te vragen van een SWbemObject werd in de vorige oefeningen reeds ->{"attibuteName"} gebruikt, maar deze methode werkt niet altijd. We moeten eerst opmerken dat er twee soorten attributen zijn:
+
+* WMI systeemattributen die typisch zijn voor de fundamentele bewerking in WMI, ze zijn beschikbaar voor alle SWbemObjecten
+* attributen die specifiek zijn voor de klasse waartoe het SWbemObject behoort.
+
+De WMI systeemattributen zijn gemakkelijk te herkennen omdat de attribuutnaam begint met een dubbel _-teken, bijvoorbeeld __CLASS, __RELPATH,.... Deze attributen zijn ook altijd ingesteld, zowel voor de klasse als voor zijn instanties, en bevatten algemene informatie over het object.
+De andere attributen bevatten specifieke informatie voor een bepaalde instantie of klasse, ze zijn niet altijd ingesteld. Het opvragen van een attribuut is fundamenteel verschillend voor beide types. Bovendien zijn er telkens twee verschillende technieken om de inhoud van een attribuut op te vragen.
+
+### Formele methode
+
+Elk SWbemObject komt overeen met een COM-object van het type SWbemObjectEx, dat zelf is afgeleid van SWbemObject. In de WMI-documentatie vind je het SystemProperties_-attribuut (van SWbemObjectEx) dat alle WMI systeemattributen opvraagt, en ook het Properties_-attribuut (van SWbemObject) waarmee alle andere attributen beschikbaar gesteld worden. Zoals je ook in de WMI-documentatie terugvindt, bekom je telkens een SWbemPropertySet collectie van SWbemProperty objecten. Elk van deze SWbemProperty objecten stelt één attribuut voor van het SWbemObject. De naam, het type,... van dit WMI attribuut te bekomen, moet men de Name, CIMType , IsArray,... attributen van het SWbemProperty object raadplegen.
+
+Hiermee kan je programmatorisch een overzicht maken van alle attributen van een bepaald SWbemObject.
+
+* [Oefening 13][13]
+
+
+
+
+[13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
