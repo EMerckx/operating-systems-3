@@ -48,9 +48,18 @@ Een Range object beschikt altijd over de collectie-objecten rows en columns. Elk
 * [Oefening 3][03]
 * [Oefening 4][04]
 
+Delen van een worksheet ophalen. Hieronder een paar voorbeelden die een beperkter deel van een worksheet ophalen.
 
+```
+$range=$nsheet->Range("A1:D10");
+$range=$nsheet->Cells(4,1);
+$range=$nsheet->Range($nsheet->Cells(1,1),$nsheet->Cells(4,3));
+```
+
+* [Oefening 5][05]
 
 [01]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/01.pl
 [02]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/02.pl
 [03]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/03.pl
 [04]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/04.pl
+[05]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/05.pl
