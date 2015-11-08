@@ -25,6 +25,8 @@ my $instance = $wbemservices->Get("Win32_Directory.Name='c:\\'");
 # $wbemservices->ExecQuery("SELECT * FROM Win32_Directory WHERE Name = 'c:\\'");
 # my ($instance) = (in $instances);
 
+#-----------------------------------------------------------------------------------------
+
 # get the associators
 
 # get all the instances, associated with this instance
@@ -37,9 +39,10 @@ foreach ( in $associators1) {
     print "\tClass: " . $_->{Path_}->{Class} . "\n";
 }
 print "\n";
-# only get the classes for the associated objects
+
+# only get the classes for the associated objects
 # fifth optional parameter = ClassDefsOnly
-my $associators2 = $instance->Associators_(undef, undef, undef, undef, 1);
+my $associators2 = $instance->Associators_( undef, undef, undef, undef, 1 );
 
 # print info
 print "\$instance->Associators_(undef, undef, undef, undef, undef, 1) \n";
@@ -48,9 +51,3 @@ foreach ( in $associators2) {
     print "\tClass: " . $_->{Path_}->{Class} . "\n";
 }
 print "\n";
-
-# my $Associators = $Instance->Associators_(); #alle instanties, geassocieerd met deze instantie
-# print $Associators->{Count} , " exempla(a)r(en) \n";
-
-# my $Associators = $Instance->Associators_(undef,undef,undef,undef,1); #enkel de klassen voor de geassocieerde objecten
-# print $Associators->{Count} , " exempla(a)r(en) \n";
