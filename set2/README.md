@@ -58,8 +58,39 @@ $range=$nsheet->Range($nsheet->Cells(1,1),$nsheet->Cells(4,3));
 
 * [Oefening 5][05]
 
+We kunnen ook de inhoud van een worksheet bewerken.
+
+* [Oefening 6][06]
+
+Om de opmaak te wijzigen beschik je onder andere over:
+* de methode Autofit, die echter niet op elk Range object kan worden toegepast (zie documentatie).
+* het attribuut font, dat een object instelt die de volledige formattering van deze range bevat. Zoek zelf de attributen van dit object op.
+* de attributen HorizontalAlignment, VerticalAlignment, waarmee je de alignatie (uitlijning) van alle cellen in de range kan manipuleren.
+* het attribuut Borders, dat een collectie-object instelt die de randen van deze range beschrijft.
+
+Voor de twee laatste attributen moet je ook de numerieke waarden kennen van een aantal excel constanten. Je kan deze constanten opzoeken in de tak Excel Object Model Reference / Enumerations van de Excel 2007 Documentatie (en overtypen). Een betere oplossing is het inladen van de Type Library Microsoft Excel 12.0 Object Library (zie reeks 1).
+
+Merk op: Voor sommige versies van Excel wordt gemeld door studenten dat het niet lukt om de Type Library rechtstreeks in te laden via '.*Excel'. Gebruik dan het alternatief (zie reeks  1 - oef 10).
+
+Heel handig om de opmaak te achterhalen is eerst een macro op te nemen in Microsoft Office. Pas onderstaand regeltje toe om de macro
+
+```
+object.method(argument).property = value
+```
+
+(in VBA) te converteren naar Perl:
+
+```
+$object->method(argument)->{property} = value;
+```
+
+* [Oefening 7][07]
+
+
 [01]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/01.pl
 [02]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/02.pl
 [03]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/03.pl
 [04]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/04.pl
 [05]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/05.pl
+[06]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/06.pl
+[07]: https://github.com/EMerckx/operating-systems-3/blob/master/set2/07.pl
