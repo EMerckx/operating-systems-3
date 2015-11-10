@@ -35,7 +35,49 @@ Voor de "Message" klasse beperken we ons tot de interface IMessage. De beschikba
 
 * [Oefening 14][14]
 
+De methode Send() uit de interface IMessage is verantwoordelijk voor het verzenden van de mail. Als je dit uitprobeert, dan zal de mail waarschijnlijk niet toekomen: je hebt immers niet opgegeven hoe dit moet gebeuren. (Indien Outlook Express correct geconfigureerd is via smtp, kan dit wel werken.) Toon de foutmelding voor extra informatie.
+De "Configuration" klasse is verantwoordelijk voor de instellingen. Voor deze klasse bestaat enkel de interface IConfiguration, met als enige attribuut de Fields collectie, die de "configuration settings" instelt. We bespreken eerst algemeen wat collecties zijn.
+
+(...)
+
+Waarschijnlijk bevat dit configuratie object geen informatie over de uitgaande server. In de paragraaf CDO for Windows 2000 / Messaging / Messaging Programming Tasks / Configuring the Message Object / Sending or Posting Using the Network wordt beschreven welke instellingen noodzakelijk zijn om een mail te versturen over het netwerk met het SMTP-protocol : sendusing en smtpserver. Bekijk ook het voorbeeldje onderaan (in VbScript).
+Omdat het Configuration object zijn informatie haalt bij het mail-programma Outlook Express, kan je de instellingen gewoon instellen door dit programma te initialiseren met een juiste account. Het belangrijkste is het instellen van de uitgaande server.
+Dit kan je thuis gemakkelijk uitproberen. Nu bevat het configuratie object veel meer velden, en zal het verzenden van de mail wel lukken.
+
+(...)
+
+### Hoe stel je zelf de configuratie in?
+
+Voeg de volgende initialisaties toe:
+
+``` Perl
+#thuis aanpassen
+$conf->Fields("http://schemas.microsoft.com/cdo/configuration/smtpserver")
+	->{Value} = "smtp.hogent.be"; 
+
+#niet noodzakelijk
+$conf->Fields("http://schemas.microsoft.com/cdo/configuration/smtpserverport")
+	->{Value} = 25;               
+
+$conf->Fields("http://schemas.microsoft.com/cdo/configuration/sendusing")
+	->{Value}  = 2;
+
+#is noodzakelijk
+$conf->{Fields}->Update();      
+```
+
+Tot slot moet je deze configuratie instellen op het Message Object :
+
+```Perl
+#moet ingevuld worden
+$mail->{Configuration}=$conf;  
+```
+
+Nu zal het verzenden van de mail met send() altijd lukken, ook als Outlook Express niet is ingesteld.
+
+* [Oefening 17][17]
 
 [10]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/10.pl
 [11]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/11.pl
 [14]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/14.pl
+[17]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/17.pl
