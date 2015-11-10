@@ -122,22 +122,41 @@ for my $workbookname (@ARGV) {
 
     #-----------------------------------------------------
 
-    print "Drawing vertical border lines -> DOESN'T WORK \n";
+    print "Drawing vertical border lines -> works with integers! \n";
 
     # draw the vertical borders
+
     # $range->Borders(xlInsideVertical)->{LineStyle} = xlContinuous;
+    # see set 1 exercise 1:
+    # xlInsideVertical : 11
+    # xlContinuous : 1
+    $range->Borders(11)->{LineStyle} = 1;
+
     # $range->Borders(xlEdgeRight)->{LineStyle} = xlContinuous;
+    # see set 1 exercise 1:
+    # xlEdgeRight : 10
+    # xlContinuous : 1
+    $range->Borders(10)->{LineStyle} = 1;
+
     # $range->Borders(xlEdgeLeft)->{LineStyle} = xlContinuous;
+    # see set 1 exercise 1:
+    # xlEdgeLeft : 7
+    # xlContinuous : 1
+    $range->Borders(7)->{LineStyle} = 1;
 
     # save the workbook
     $workbook->Save();
 
     #-----------------------------------------------------
 
-    print "Drawing first row horizontal border line -> DOESN'T WORK \n";
+    print "Drawing first row horizontal border line -> works with integers! \n";
 
     # draw the horizontal border
     # $range->rows(1)->Borders(xlEdgeBottom)->{LineStyle} = xlContinuous;
+    # see set 1 exercise 1:
+    # xlEdgeBottom : 9
+    # xlContinuous : 1
+    $range->rows(1)->Borders(9)->{LineStyle} = 1;
 
     # save the workbook
     $workbook->Save();
