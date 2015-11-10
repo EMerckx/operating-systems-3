@@ -127,19 +127,19 @@ for my $workbookname (@ARGV) {
     # draw the vertical borders
 
     # $range->Borders(xlInsideVertical)->{LineStyle} = xlContinuous;
-    # see set 1 exercise 1:
+    # see set 1 exercise 10:
     # xlInsideVertical : 11
     # xlContinuous : 1
     $range->Borders(11)->{LineStyle} = 1;
 
     # $range->Borders(xlEdgeRight)->{LineStyle} = xlContinuous;
-    # see set 1 exercise 1:
+    # see set 1 exercise 10:
     # xlEdgeRight : 10
     # xlContinuous : 1
     $range->Borders(10)->{LineStyle} = 1;
 
     # $range->Borders(xlEdgeLeft)->{LineStyle} = xlContinuous;
-    # see set 1 exercise 1:
+    # see set 1 exercise 10:
     # xlEdgeLeft : 7
     # xlContinuous : 1
     $range->Borders(7)->{LineStyle} = 1;
@@ -153,7 +153,7 @@ for my $workbookname (@ARGV) {
 
     # draw the horizontal border
     # $range->rows(1)->Borders(xlEdgeBottom)->{LineStyle} = xlContinuous;
-    # see set 1 exercise 1:
+    # see set 1 exercise 10:
     # xlEdgeBottom : 9
     # xlContinuous : 1
     $range->rows(1)->Borders(9)->{LineStyle} = 1;
