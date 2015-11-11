@@ -21,3 +21,13 @@ $addedClasses = $list |
 $addedClasses | 
     sort __Property_Count -Descending | 
     select __Class, __Property_Count
+
+#----------------------------------------------------------------------
+
+# show the property names for the found classes
+$addedClasses |
+    sort __PROPERTY_COUNT -Descending |
+    foreach {
+        $_.__CLASS +"("+$_.__Property_Count+" properties)" 
+        $_.Properties | select Name | Format-Wide -AutoSize
+    }
