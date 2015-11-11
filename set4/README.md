@@ -101,7 +101,12 @@ Hiermee kan je programmatorisch een overzicht maken van alle attributen van een 
 
 * [Oefening 13][13]
 
+Nu kunnen we ook de uiteindelijke waarde opvragen van een bepaald attribuut. Het Value attribuut van elk SWbemProperty object bevat de uiteindelijke waarde. Zoals hiervoor beschreven kan je met het IsArray attribuut van het SWbemProperty object bepalen of de waarde een enkelvoudige of een samengestelde waarde heeft. In Perl beschik je ook over de ref operator toegepast op het Value attribuut.
+
+* Oefening 14
+* [Oefening 15][15]
 
 
 
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
+[15]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/15.pl
