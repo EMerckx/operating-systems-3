@@ -23,27 +23,32 @@ my $locator      = Win32::OLE->new("WbemScripting.SWbemLocator");
 my $wbemservices = $locator->ConnectServer( $computername, $namespace );
 
 # create the notificationquery
-my $notificationQuery = "SELECT * FROM __InstanceOperationEvent WITHIN 5 WHERE TargetInstance ISA 'Win32_Process'";
+my $notificationQuery =
+"SELECT * FROM __InstanceOperationEvent WITHIN 5 WHERE TargetInstance ISA 'Win32_Process'";
 
 # execute the query
-my $eventNotification = $wbemservices->ExecNotificationQuery($notificationQuery);
+my $eventNotification =
+  $wbemservices->ExecNotificationQuery($notificationQuery);
 
-# we set $| to 1 
+# we set $| to 1
 # because we want to see output to the screen$| = 1;
 
 print "Waiting for events .";
 
-use Data::Dumper;
+use Data::Dumper;
 print Dumper($eventNotification);
-while(0) {
-	##my $event = $eventNotification->NextEvent(5000);
-	
-	my $event  = 4;
-	Win32::OLE->LastError()
-	and print "."
-	or print  Dumper($event);
-	
-		}
+
+
+while (0) {
+
+    # error here, perl can't find NextEvent method....
+    ##my $event = $eventNotification->NextEvent(5000);
+
+    my $event = 4;
+    Win32::OLE->LastError() and print "."
+      or print Dumper($event);
+
+}
 
 # use Win32::OLE 'in';
 
