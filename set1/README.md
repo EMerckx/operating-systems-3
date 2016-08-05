@@ -1,5 +1,49 @@
 # REEKS 1 : COM programmatie in de praktijk
 
+Thuis:
+
+1. Oleview  installeren.
+2. Perl: Download perl (Windows versie) - inclusief perlscript en ActivePerl documentatie.
+3. De MSDN Library van VisualStudio 2008 : beschikbaar op WWW of CD - deze versie verschilt minimaal van de MSDN Library op de labotoestellen. Druk dit overzicht af, dan vind je sneller informatie in de MSDN Library.
+
+De ActivePerl documentatie en MSDN Library zijn lokaal beschikbaar op de labocomputers en kan je raadplegen tijdens de testen.
+Je stelt best in dat er niet online wordt gezocht (geeft problemen als er geen netwerk is). Dit is instelbaar in Tools / Options / Help / Online
+Je kan er veel informatie terugvinden en kopiëren. Je mag ook de cursus Perl van vorig jaar gebruiken op de testen.
+
+## COM programmatie in de praktijk
+
+We bespreken in deze reeks de basisprincipes van COM programmatie met scripts.
+
+Een Windows script is een tekstfile, geschreven in een scripttaal (Script Engine). Een Windows script wordt niet gecompileerd in .exe vorm, maar is volledig aangewezen op een Scripting Host om zijn code at runtime uit te voeren.
+Elke scripting host biedt een omgeving aan die zorgt voor de correcte uitvoering van elk script, geschreven in een taal waarvoor de ActiveX script engine geïnstalleerd is. De meeste scripting hosts zijn toepassingen (zoals Internet Explorer zie hoofdstuk 5).
+
+De volgende Scripting Hosts, die vanuit een Command Prompt console worden opgestart, zijn uitermate geschikt voor operating systeem verwante taken:
+
+* WSH: Window Scripting Host  , gecombineerd met VBScript, JavaScript of Perlscript als scripting Engine.
+* Perl: enkel in combinatie met engine PerlScript
+
+### Modules gebruiken in PerlScript
+
+Perl(Script) stelt een enorme hoeveelheid extra functionaliteit ter beschikking met behulp van modules. Je kan een overzicht raadplegen en ook PerlScript modules downloaden op CPAN, of met de ppm opdracht.
+
+Informatie over de ingeladen modules vind je in de hash %INC, zoals in onderstaand voorbeeld wordt geïllustreerd. Je krijgt hierdoor toegang tot de geëxporteerde functies uit de module.
+In de inleiding werd de module strict reeds vermeld. Als je deze module inlaadt worden declaraties verplicht gemaakt. Welke submodules worden hierdoor ingeladen? (Je moet nu wel alle variabelen ook declareren.)
+
+* [Oefening 2][2]
+
+Met Perl als host kan je niet automatisch COM-objecten initialiseren. In de Perl-documentatie, de sectie Using OLE with Perl, staat beschreven dat je hiervoor de OLE-module inlaadt met:
+
+```
+use Win32::OLE qw(in with);
+```
+
+Onderzoek welke sub-modules nu worden ingeladen.
+
+* [Oefening 2b][2b]
+
+Deze module bevat een aantal interessante/noodzakelijke functies en methodes om COM objecten te initialiseren en te gebruiken vanuit Perlscript. De beschrijving van alle beschikbare functies en methodes zoek je op in dezelfde Perl-documentatie in de sectie Modules / Win32 / OLE (in de linkerkolom bijna helemaal naar beneden scrollen).
+Een korte bespreking van de interessantste functies:
+
 * [Oefening 10][10]
 
 ## FileSystemObject model
@@ -77,6 +121,8 @@ Nu zal het verzenden van de mail met send() altijd lukken, ook als Outlook Expre
 
 * [Oefening 17][17]
 
+[2]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/02.pl
+[2b]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/02b.pl
 [10]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/10.pl
 [11]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/11.pl
 [14]: https://github.com/EMerckx/operating-systems-3/blob/master/set1/14.pl

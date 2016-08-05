@@ -1,0 +1,5 @@
+Type the command regedit in Powershell
+The Registry Editor opens up
+Right click on HKEY_CLASSES_ROOT
+Click on Find...
+Enter excel.sheet and click on Find Next
