@@ -41,3 +41,5 @@ print "\nQueryObjectType: ";
 print join(" / ", Win32::OLE->QueryObjectType($excel));
 print "\n";
 # ERROR: object is not a Win32::OLE object (line 39 & 41)
+# This error was caused by the fact that Excel wasn't installed
+# After installing Excel, this script works perfectly

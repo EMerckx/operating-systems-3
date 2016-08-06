@@ -21,3 +21,5 @@ my $count = Win32::OLE->EnumAllObjects(
 print "\nTotal amount of OLE-objects loaded: " . $count . "\n";
 
 # ERROR: only 2 objects shown, Excel.Sheet is not loaded!
+# This error was caused by the fact that Excel wasn't installed
+# After installing Excel, this script works perfectly
