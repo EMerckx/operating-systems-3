@@ -135,9 +135,9 @@ Deze directe methode werkt enkel met gewone attributen, en niet met systeem attr
 De WMI Scripting Library kan ook uitstekend gebruikt worden om de klassedefinities in de CIM repository te analyseren. Na connecteren met een bepaalde Namespace op een bepaald toestel, kan je met een schemaquery alle klassen ophalen.
 Voor elke namespace initialiseer je een SWbemServices object en van daaruit kan je alle klassen van deze namespace verder te onderzoeken. Volgende methodes (de twee eerste methodes werden al gebruikt in de vorige oefeningen), resulteren in een SWbemObjectSet collectie van SWbemObjecten die enkel klassen representeren:
 
-* ExecQuery(WQLquery) methode, met als parameter een WQL schemaquerystring (SELECT * FROM meta_class …): bepaalt alle klassen in de namespace.
-* AssociatorsOf(relpad,...,True) methode, met een objectpad van een klasse als eerste parameter, en de zevende parameter (SchemaOnly) ingesteld op True - zie oefening 9.
-* SubclassesOf( ) methode. Zonder parameters bepaalt dit alle klassen in de namespace. Deze methode heeft twee interessante optionele parameters:
+* **ExecQuery(WQLquery)** methode, met als parameter een WQL schemaquerystring (SELECT * FROM meta_class …): bepaalt alle klassen in de namespace.
+* **AssociatorsOf(relpad,...,True)** methode, met een objectpad van een klasse als eerste parameter, en de zevende parameter (SchemaOnly) ingesteld op True - zie oefening 9.
+* **SubclassesOf( )** methode. Zonder parameters bepaalt dit alle klassen in de namespace. Deze methode heeft twee interessante optionele parameters:
   * De eerste parameter beperkt het resultaat tot subklassen die van een specifieke klasse afgeleid zijn. In plaats van deze methode te gebruiken, kan je dan ook vertrekken van een SWbemObject dat de gewenste specifieke klasse representeert. Met de methode Subclasses_( ) bekom je dezelfde ObjectSet.
   * De tweede parameter geeft de mogelijkheid om de wbemQueryFlagShallow bit aan te zetten, dan levert de methode enkel onmiddellijke subklassen van de eerste parameter (of indien deze ontbreekt, subklassen die niet zijn afgeleid van een andere klasse). Deze WMI constante moet je correct "inladen" met de TypeLibrary.
 
@@ -151,6 +151,7 @@ Zoals we in de vorige reeks gezien hebben bevat de CIM repository ook allerlei q
 Je kan geen informatie over qualifiers opnemen in een WQL-query.
 
 Opmerkingen vooraf:
+
 1. Indien je informatie wil opvragen over qualifiers, kan je best bij het ophalen van het WMI object de wbemFlagUseAmendedQualifiers bit van de iflags parameter van de diverse SWbem methodes (get, subclassesOf, getObject, ExecQuery...) aan zetten, anders worden niet alle qualifiers opgehaald. Deze WMI constante (die moet worden ingeladen!!) wordt op de juiste positie in de parameterlijst opgegeven (afhankelijk van de specifieke methode).
 2. Aangezien qualifier-informatie enkel afhangt van de klasse waartoe een WMI object behoort is het efficiënter om de qualifiers te bepalen van het WMI object dat de bijhorende WMI klasse voorstelt: zo wordt vermeden dat men dit moet herhalen voor elk individueel WMI object van dezelfde klasse. Bovendien is de SWbemQualifierSet collectie van een instantie maar een deelset van de SWbemQualifierSet collectie van de overeenkomstige klasse!!
 
