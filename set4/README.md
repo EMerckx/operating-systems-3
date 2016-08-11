@@ -159,8 +159,8 @@ Opmerkingen vooraf:
 
 Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSet collectie van SWbemQualifier objecten, die elk individueel een klassequalifier representeren. Deze bevatten meer gedetailleerde informatie over de klasse. Elk SWbemQualifier object heeft een Name en een Value. Je kan dus geen informatie vragen over het type van de qualifier (zie documentatie).
 
-* Oefening 25
-* Oefening 26
+* [Oefening 25][25]
+* [Oefening 26][26]
 * Oefening 27
 * Oefening 28
 * Oefening 29
@@ -170,3 +170,5 @@ Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSe
 [23]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/23.pl
 [23b]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/23b.pl
 [24]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/24.pl
+[25]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/25.pl
+[26]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/26.pl
