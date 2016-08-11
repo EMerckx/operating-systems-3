@@ -106,7 +106,66 @@ Nu kunnen we ook de uiteindelijke waarde opvragen van een bepaald attribuut. Het
 * Oefening 14
 * [Oefening 15][15]
 
+Men is niet verplicht om de SWbemPropertySet collectie element per element af te lopen: de SWbemPropertySet collectie wordt geïndexeerd met het Item attribuut. Zo kan men uiteindelijk de waarde van een specifiek attribuut van een SWbemObject in Perl bekomen via volgende syntax:
 
+```
+$WbemObject->{Properties_}->Item("attribuutname")->{Value}
+```
+
+wat ingekort kan worden tot:
+
+```
+$WbemObject->Properties_("attribuutname")->{Value}
+```
+
+Analoog voor een specifiek systeemattribuut van een SWbemObject :
+
+```
+$WbemObject->SystemProperties_("systemattribuutname")->{Value}
+```
+
+### Directe methode
+
+Deze directe methode werkt enkel met gewone attributen, en niet met systeem attributen!
+
+(...)
+
+## CIM repository analyseren
+
+De WMI Scripting Library kan ook uitstekend gebruikt worden om de klassedefinities in de CIM repository te analyseren. Na connecteren met een bepaalde Namespace op een bepaald toestel, kan je met een schemaquery alle klassen ophalen.
+Voor elke namespace initialiseer je een SWbemServices object en van daaruit kan je alle klassen van deze namespace verder te onderzoeken. Volgende methodes (de twee eerste methodes werden al gebruikt in de vorige oefeningen), resulteren in een SWbemObjectSet collectie van SWbemObjecten die enkel klassen representeren:
+
+* ExecQuery(WQLquery) methode, met als parameter een WQL schemaquerystring (SELECT * FROM meta_class …): bepaalt alle klassen in de namespace.
+* AssociatorsOf(relpad,...,True) methode, met een objectpad van een klasse als eerste parameter, en de zevende parameter (SchemaOnly) ingesteld op True - zie oefening 9.
+* SubclassesOf( ) methode. Zonder parameters bepaalt dit alle klassen in de namespace. Deze methode heeft twee interessante optionele parameters:
+  * De eerste parameter beperkt het resultaat tot subklassen die van een specifieke klasse afgeleid zijn. In plaats van deze methode te gebruiken, kan je dan ook vertrekken van een SWbemObject dat de gewenste specifieke klasse representeert. Met de methode Subclasses_( ) bekom je dezelfde ObjectSet.
+  * De tweede parameter geeft de mogelijkheid om de wbemQueryFlagShallow bit aan te zetten, dan levert de methode enkel onmiddellijke subklassen van de eerste parameter (of indien deze ontbreekt, subklassen die niet zijn afgeleid van een andere klasse). Deze WMI constante moet je correct "inladen" met de TypeLibrary.
+
+* [Oefening 23][23]
+* [Oefening 23b][23b]
+* [Oefening 24][24]
+
+## Qualifiers
+
+Zoals we in de vorige reeks gezien hebben bevat de CIM repository ook allerlei qualifiers. Deze informatie kan je ook programmatisch onderzoeken.
+Je kan geen informatie over qualifiers opnemen in een WQL-query.
+
+Opmerkingen vooraf:
+1. Indien je informatie wil opvragen over qualifiers, kan je best bij het ophalen van het WMI object de wbemFlagUseAmendedQualifiers bit van de iflags parameter van de diverse SWbem methodes (get, subclassesOf, getObject, ExecQuery...) aan zetten, anders worden niet alle qualifiers opgehaald. Deze WMI constante (die moet worden ingeladen!!) wordt op de juiste positie in de parameterlijst opgegeven (afhankelijk van de specifieke methode).
+2. Aangezien qualifier-informatie enkel afhangt van de klasse waartoe een WMI object behoort is het efficiënter om de qualifiers te bepalen van het WMI object dat de bijhorende WMI klasse voorstelt: zo wordt vermeden dat men dit moet herhalen voor elk individueel WMI object van dezelfde klasse. Bovendien is de SWbemQualifierSet collectie van een instantie maar een deelset van de SWbemQualifierSet collectie van de overeenkomstige klasse!!
+
+### Klassequalifiers
+
+Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSet collectie van SWbemQualifier objecten, die elk individueel een klassequalifier representeren. Deze bevatten meer gedetailleerde informatie over de klasse. Elk SWbemQualifier object heeft een Name en een Value. Je kan dus geen informatie vragen over het type van de qualifier (zie documentatie).
+
+* Oefening 25
+* Oefening 26
+* Oefening 27
+* Oefening 28
+* Oefening 29
 
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
 [15]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/15.pl
+[23]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/23.pl
+[23b]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/23b.pl
+[24]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/24.pl
