@@ -31,6 +31,8 @@ Set-ExecutionPolicy RemoteSigned
 
 ## WMI CIM Studio
 
+### Installation
+
 For installing the WMI CIM Studio, I used the following download link: [Microsoft CIM][1]
 
 After the installation, upon opening the CIM Studio I couldn't connect to the namespace. I fixed this issue using an [answer on Stack Overflow][2]. The solution is adding the following line in the HEAD of the Html file, just before the SCRIPT tag.
@@ -38,6 +40,10 @@ After the installation, upon opening the CIM Studio I couldn't connect to the na
 ```
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 ```
+
+### View object qualifiers
+
+To view the qualifiers of the class, click with your right mouse button on the grid of the Properties tab. There you can click on the Object Qualifiers button and a window pops up. In this window, all the qualifiers are present.
 
 ## Windows PowerShell ISE
 

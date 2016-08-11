@@ -161,7 +161,7 @@ Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSe
 
 * [Oefening 25][25]
 * [Oefening 26][26]
-* Oefening 27
+* [Oefening 27][27]
 * Oefening 28
 * Oefening 29
 
@@ -172,3 +172,4 @@ Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSe
 [24]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/24.pl
 [25]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/25.pl
 [26]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/26.pl
+[27]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/27.pl
