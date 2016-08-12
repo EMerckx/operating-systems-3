@@ -26,6 +26,20 @@ $object->{"systemproperties_"}->Items($attr)->{"value"};
 $object->{"qualifiers_"}->Items($attr)->{"value"};
 ```
 
+### Create instances
+
+Why does the class Win32_Process allow you to create instances of the class, and Win32_Product not? 
+It's because Win32_Process has the qualifier SupportsCreate set to True, which allows the creation of instances.
+The WMI documentation states:
+
+```
+SupportsCreate: 
+    Data type: boolean
+    Applies to: classes 
+    Indicates whether the class supports the creation of instances. 
+    The default is FALSE.
+```
+
 ## Inleiding
 
 De volledige WMI infrastructuur kan, ondermeer vanuit scripttalen, benaderd worden via COM objecten met een automation interface. De verzameling van deze COM objecten wordt de WMI Scripting Library genoemd. Zoek informatie over de COM objecten en hun onderlinge relatie op in de WMI Reference / Scripting API for WMI subtak van de WMI-documentatie. Bekijk in de subtak Scripting API Object Model het Scripting API Object Model. Deze bestaat uit een twintigtal COM klassen, die in deze reeks in diverse stappen zullen bestudeerd worden.
