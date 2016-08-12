@@ -190,7 +190,18 @@ Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSe
 * [Oefening 26][26]
 * [Oefening 27][27]
 * [Oefening 28][28]
-* Oefening 29
+* [Oefening 29][29]
+
+### Attribuutqualifiers
+
+Elk attribuut wordt voorgesteld als een SWbemProperty object. We bespraken reeds de Name, CIMType, Value en IsArray attributen van een SWbemProperty object. Met het Qualifiers_ attribuut van dit SWbemProperty object wordt een SWbemQualifierSet opgehaald van SWbemQualifier objecten, die elk individueel een attribuutqualifier representeren. Op deze manier kunnen de attribuutqualifiers ondervraagd worden, bijvoorbeeld om via het Values/ValueMap mechanisme de waarde van de attributen op een meer informatieve manier te kunnen interpreteren.
+
+* [Oefening 30][30]
+* [Oefening 31][31]
+* [Oefening 31b][31b]
+* Oefening 32
+* ...
+* Oefening 36
 
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
 [15]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/15.pl
@@ -201,3 +212,7 @@ Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSe
 [26]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/26.pl
 [27]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/27.pl
 [28]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/28.pl
+[29]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/29.pl
+[30]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/30.pl
+[31]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/31.pl
+[31b]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/31b.pl

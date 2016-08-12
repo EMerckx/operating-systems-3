@@ -19,7 +19,7 @@ use Win32::OLE 'in';
 use Win32::OLE::Const;
 
 # script stops and gives error message is something goes wrong
-$Win32::OLE::Warn = 3;
+#$Win32::OLE::Warn = 3;
 
 # variables
 my $computername = ".";
@@ -37,7 +37,7 @@ my $typeLibrary = Win32::OLE::Const->Load($wbemservices);
 my %cimTypes;
 while ( my ( $key, $value ) = each %{$typeLibrary} ) {
     if ( $key =~ /wbemCim/ ) {
-	$cimTypes{$value} = substr($key,11);
+		$cimTypes{$value} = substr($key,11);
     }
 }
 
@@ -45,8 +45,30 @@ while ( my ( $key, $value ) = each %{$typeLibrary} ) {
 
 # get the class
 # we use the loaded variable wbemFlagUseAmendedQualifiers in the Get method
-# this way, we get all the qualifiers
-# but we can't find the flag, so set it to 0
+# so we get all the qualifiers (see MSDN library documentation of SubclassesOf) 
 my $classname = "Win32_LogicalDisk";
-my $class = $wbemservices->Get($classname, 0);
+my $class = $wbemservices->Get($classname, 131072);
+
 # print here
+printf "Property qualifiers of all attributes of the %s class:\n", $classname;
+# loop over every property
+foreach my $prop (in $class->{"properties_"}){
+	# get the qualifiers of the current property
+	my $qualifiers = $prop->{"qualifiers_"};
+
+	# print the property and qualifiers
+	printf "%s \n", $prop->{"name"};
+	#if($qualifiers->Item{"cimtype"}){
+	#	printf " (%s <->%s = %s)\n",
+	#		$prop->{"cimtype"},
+	#		$qualifiers->Item("cimtype")->{"value"},
+	#		$cimTypes{$prop->{"cimtype"}};		
+	#}
+	foreach my $qual (in $qualifiers){
+		printf "\t%s \n", $qual->{"name"};
+	}
+}
+
+#    if ($Qualifiers->Item("CIMTYPE")){
+#        printf " (%s <->%s = %s)",$prop->{CIMType},$Qualifiers->Item("CIMTYPE")->{Value},$cimtype{$prop->{CIMType}};     #de attribuutqualifiers bevat een duidelijke naam voor het type
+#      }
