@@ -1,6 +1,8 @@
 # REEKS 4: WMI scripting
 
-## 
+## Own additions
+
+### Printing data structures
 
 To print a data structure, use Dumper. See the example below.
 
@@ -11,6 +13,17 @@ foreach (in $associators) {
 	print Dumper($_);
 }
 print "\n";
+```
+
+### WMI Object attributes
+
+To get the value of a property, systemproperty or qualifier, use the following syntax.
+
+```perl
+my $attr = "attributename"
+$object->{"properties_"}->Items($attr)->{"value"};
+$object->{"systemproperties_"}->Items($attr)->{"value"};
+$object->{"qualifiers_"}->Items($attr)->{"value"};
 ```
 
 ## Inleiding
@@ -162,7 +175,7 @@ Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSe
 * [Oefening 25][25]
 * [Oefening 26][26]
 * [Oefening 27][27]
-* Oefening 28
+* [Oefening 28][28]
 * Oefening 29
 
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
@@ -173,3 +186,4 @@ Voor elk SWbemObject vraag je met het Qualifiers_ -attribuut de SWbemQualifierSe
 [25]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/25.pl
 [26]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/26.pl
 [27]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/27.pl
+[28]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/28.pl
