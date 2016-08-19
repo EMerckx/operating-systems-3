@@ -203,6 +203,55 @@ Elk attribuut wordt voorgesteld als een SWbemProperty object. We bespraken reeds
 * ...
 * Oefening 36
 
+## Methodes van een SWbemObject
+
+De methodes van een SWbemObject worden beschreven met een vrij complexe objecten-hiërarchie, die alle informatie verpakt in aparte objecten, die we nu zullen bespreken.
+Voor elk SWbemObject, ongeacht of dit een klasse of een object representeert, verwijst het Methods_ attribuut naar een SWbemMethodSet collectie van SWbemMethod objecten. (Dit is NIET toepasbaar op het SWbemServices object).
+Elke individuele methode van een WMI klasse/object kan benaderd worden met een SWbemMethod object. Zoals je in de WMI-documentatie kan terugvinden, heeft dit SWbemMethod object volgende interessante properties:
+
+* het Name attribuut: een string die ook kan gebruikt worden om een individueel element van de SWbemMethodSet collectie te indexeren,
+* het Qualifiers_ attribuut: representeert de methodequalifiers (zie reeks3) als een SWbemQualifierSet collectie van SWbemQualifier objecten.
+* de InParameters bevatten informatie over de invoerparameters als SWbemObject,
+* de OutParameters bevatten informatie over de uitvoerparameters als SWbemObject.
+
+De twee laatste attributen zijn, misschien onverwacht, ook vrij complex omdat ze refereren naar een SWbemObject (en dus niet naar een collectie!!). Van dit laatste object is enkel het Properties_ attribuut interessant. Dit resulteert in een SWbemPropertySet collectie die de uiteindelijk SWbemProperty objecten bevat, die elk een individuele invoer- of uitvoerparameter voorstellen. Deze SWbemProperty objecten, die we al in oefening 13 gebruikt hebben, beschikken over een Name, CIMType, Value en IsArray attribuut. Bovendien zal het Qualifiers_ attribuut verwijzen naar een SWbemQualifierSet van methodeparameterqualifiers die bij een specifieke parameter horen (zie reeks 3).
+
+* [Oefening 37][37]
+* [Oefening 37b][37b]
+* Oefening 38
+* [Oefening 39][39]
+
+## Oproepen van methoden
+
+De meeste methodes zijn enkel zinvol indien ze worden opgeroepen op een instantie. Een aantal klassen beschikken echter ook over 'statische' methodes, zie vorige oefening. Controleer dit voor je een methode oproept.
+We hebben reeds intuïtief methodes opgeroepen van SWbemServices, en ook van een SWbemObject, door gebruik te maken van de directe techniek. Daarbij moet je alle informatie (methodenaam, argumentenlijst, ...) vooraf opzoeken.
+Net zoals bij het raadplegen van attributen, is er ook een formele techniek om WMImethodes van een WMI klasse/object aan te roepen, eens men beschikt over een SWbemObject ($WbemObject) dat de klasse of het object representeert. We bespreken de twee methodes:
+
+* De directe techniek insinueert dat het COM SWbemObject de methoden van de WMI klasse overerft. Hierdoor is een eenvoudige syntax mogelijk:
+
+```perl
+$ReturnStatus = $WbemObject->WMImethode(parameterlijst)
+```
+
+De parameterlijst moet hierbij ingevuld worden met de lijst van de actuele argumenten, in de juiste volgorde zoals die door de ID methodeparameterqualifiers opgelegd wordt. Waar nodig, moet undef gespecificeerd worden. Enkel een rij trailing undef argumenten mag weggelaten worden. Je moet hierbij de objecthiërarchie van de methodes niet gebruiken. Deze methode schiet echter soms wel tekort (zie verder).
+
+* De meer formele techniek om een WMImethode uit te voeren op een gegeven $SWbemObject vereist volgende stappen:
+
+1. initialiseer het SWbemMethod object voor de WMI methode
+2. initialiseer, met het InParameters-attribuut, het SWbemObject dat via zijn Properties_ collectie de volledige verzameling invoerparameters voorstelt die bij deze WMI methode horen. Dit object mag enkel ontbreken indien de methode geen invoerparameters heeft. Indien er enkel optionele parameters zijn, die je niet invult, moet je dit object wel initialiseren, en meegeven als parameter.
+3. vul de actuele waarden in van de noodzakelijke invoerparameters. Dit kan op een directe manier, net alsof het laatste SWbemObject de invoerparameters als attributen zou hebben overgeerfd, of via de Properties_ collectie ervan, geïndexeerd met de naam van de invoerparameter, en daarvan dan weer het Value attribuut.
+
+```perl
+$InParameters->{Name} = ...;   #directe methode
+$InParameters->{Properties_}->Item(Name)->{Value} = ....;   #indirect
+```
+
+4. voer de ExecMethod_(WMImethode,[InParameters]) methode uit op het $WbemObject dat de WMI object (of klasse) representeert. De eerste verplichte parameter is de naam van de WMImethode. De tweede optionele parameter is het SWbemObject dat de verzameling invoerparameters voorstelt.
+5. De terugkeerwaarde van de ExecMethod_ methode bevat alle OutParameters. Dit is dus een SWbemObject dat, via zijn Properties_ collectie, de volledige verzameling uitvoerparameters voorstelt. Het ophalen van de uitvoerparameters kan opnieuw op een directe, of op de formele manier. De meeste WMImethoden hebben maar één uitvoerparameter, die systematisch ReturnValue noemt.
+
+De formele techniek biedt het voordeel dat men geen rekening moet houden met de correcte volgorde van de invoerparameters. Het is ook de enige mogelijkheid indien de methode meerdere uitvoerparameters vertoont, en je die waarden ook nodig hebt.
+Tot slot bestaat nog de mogelijkheid om een methode te laten uitvoeren zonder eerst het SWbemObject te initialiseren: men kan namelijk gebruik maken van de ExecMethod_ methode van het SWbemServices object. In dit geval moet het SWbemObjectPath (het Path_ attribuut van het SWbemObject) als eerste argument toegevoegd worden.
+
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
 [15]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/15.pl
 [23]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/23.pl
@@ -216,3 +265,6 @@ Elk attribuut wordt voorgesteld als een SWbemProperty object. We bespraken reeds
 [30]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/30.pl
 [31]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/31.pl
 [31b]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/31b.pl
+[37]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/37.pl
+[37b]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/37b.pl
+[39]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/39.pl
