@@ -252,6 +252,15 @@ $InParameters->{Properties_}->Item(Name)->{Value} = ....;   #indirect
 De formele techniek biedt het voordeel dat men geen rekening moet houden met de correcte volgorde van de invoerparameters. Het is ook de enige mogelijkheid indien de methode meerdere uitvoerparameters vertoont, en je die waarden ook nodig hebt.
 Tot slot bestaat nog de mogelijkheid om een methode te laten uitvoeren zonder eerst het SWbemObject te initialiseren: men kan namelijk gebruik maken van de ExecMethod_ methode van het SWbemServices object. In dit geval moet het SWbemObjectPath (het Path_ attribuut van het SWbemObject) als eerste argument toegevoegd worden.
 
+* [Oefening 40][40]
+* ...
+* Oefening 43
+
+Sommige WMI methoden vergen bij aanroep specifieke rechten. Deze kunnen herkend worden aan de Privileges methodequalifier. Bekijk in WMI CIM Studio de ingestelde Privileges van de methode Create van de Win32_Process - klasse.
+De meest eenvoudige techniek om een meer strikt beveiligde methode aan te kunnen roepen vanuit een script, bestaat er in om tijdens het connecteren aan een namespace, de protocolspecificatie, winmgmts:, van de moniker te laten volgen door een {(…)}! string, meer informatie in de WMI-documentatie in de tak Using WMI / Creating a WMI Application or Script / Creating a WMI Script / Constructing a Moniker String . Tussen de haakjes moet dan een lijst gegeven worden, van elkaar gescheiden door komma's, van de vereiste privileges. Hierbij moet de prefix Se en de suffix Privilege telkens weggelaten worden.
+
+* [Oefening 44][44]
+
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
 [15]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/15.pl
 [23]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/23.pl
@@ -268,3 +277,5 @@ Tot slot bestaat nog de mogelijkheid om een methode te laten uitvoeren zonder ee
 [37]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/37.pl
 [37b]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/37b.pl
 [39]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/39.pl
+[40]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/40.pl
+[44]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/44.pl
