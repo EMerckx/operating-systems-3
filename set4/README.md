@@ -260,6 +260,27 @@ Sommige WMI methoden vergen bij aanroep specifieke rechten. Deze kunnen herkend 
 De meest eenvoudige techniek om een meer strikt beveiligde methode aan te kunnen roepen vanuit een script, bestaat er in om tijdens het connecteren aan een namespace, de protocolspecificatie, winmgmts:, van de moniker te laten volgen door een {(…)}! string, meer informatie in de WMI-documentatie in de tak Using WMI / Creating a WMI Application or Script / Creating a WMI Script / Constructing a Moniker String . Tussen de haakjes moet dan een lijst gegeven worden, van elkaar gescheiden door komma's, van de vereiste privileges. Hierbij moet de prefix Se en de suffix Privilege telkens weggelaten worden.
 
 * [Oefening 44][44]
+* [Oefening 45][45]
+
+## Creëren en verwijderen van objecten
+
+Om dit uit te testen moet je inloggen als Administrator.
+Er moet onderscheid worden gemaakt tussen dynamische en statische klassen. In oefening 28 hebben we bepaald voor welke klassen je zelf (dynamisch) instanties kan maken, en welke statische WMImethode je hierbij nodig hebt. Indien de klassequalifier CreateBy verwijst naar de methode PutInstance, dan verwijst dit echter NIET naar een statische WMImethode van de klasse, maar betekent dit dat de "statische" methode moet worden toegepast. Ook indien deze qualifier niet is ingevuld, moet je de "statische" methode toepassen.
+
+* Het creëren van WMI objecten van dynamische klassen, voor zover ondersteund door de provider, gebruikt de specifieke WMImethode beschreven in de klassequalifier CreateBy van de WMI klasse, behalve de uitzondering die hiervoor beschreven werd. Het scriptmatig uitvoeren van een dergelijke constructor verschilt in geen enkel opzicht van andere WMI-methodes.
+* Statische methode om objecten van een klasse te creëren. Dit gebeurt in vier stappen:
+
+1. initialiseer een SWbemObject die de klasse representeert waartoe het nieuwe object behoort.
+2. maak in het geheugen een nieuw SWbemObject, dat het nieuw te creëren WMI object representeert, door het uitvoeren van de methode SpawnInstance_( ). De return-waarde van deze methode refereert naar het nieuwe object, hierbij zijn de attributen hetzij niet, hetzij op een default waarde ingevuld,
+3. vul de actuele waarden in van de attributen van dit nieuwe object (zoek zelf de belangrijkste waarden op),
+4. vraag de Put_() methode op het nieuwe object. Dit zorgt atomair voor de effectieve creatie. Indien er reeds een object met hetzelfde objectpad zou bestaan, dan worden de attributen van dit object gewijzigd. Zoek in de MSDN-Library op wat de returnwaarde is van deze methode.
+
+Bekijk de foutmelding om na te gaan of Put_() gelukt is.
+
+Opmerkingen: De inhoud van de klassequalifier CreateBy geeft enkel de juiste informatie indien de SupportsCreate qualifier ingevuld is.
+Alhoewel de "statische" methode voor alle klassen beschikbaar is, wordt het aanbrengen van wijzigingen niet steeds door de provider ondersteund. Voor objecten die verband houden met het bestandsysteem (Win32_Directory en CIM_DataFile objecten) lukt dit bijvoorbeeld niet.
+
+* Oefening 46
 
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
 [15]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/15.pl
@@ -279,3 +300,4 @@ De meest eenvoudige techniek om een meer strikt beveiligde methode aan te kunnen
 [39]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/39.pl
 [40]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/40.pl
 [44]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/44.pl
+[45]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/45.pl
