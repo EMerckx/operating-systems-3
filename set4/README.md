@@ -280,7 +280,13 @@ Bekijk de foutmelding om na te gaan of Put_() gelukt is.
 Opmerkingen: De inhoud van de klassequalifier CreateBy geeft enkel de juiste informatie indien de SupportsCreate qualifier ingevuld is.
 Alhoewel de "statische" methode voor alle klassen beschikbaar is, wordt het aanbrengen van wijzigingen niet steeds door de provider ondersteund. Voor objecten die verband houden met het bestandsysteem (Win32_Directory en CIM_DataFile objecten) lukt dit bijvoorbeeld niet.
 
-* Oefening 46
+* [Oefening 46][46]
+* Oefening 47
+
+Om WMI objecten te verwijderen gebruik je in principe steeds de Delete_( ) methode van het SWbemObject. Voor objecten van statische klassen leidt dit effectief tot verwijdering uit de CIM repository. Voor objecten van dynamische klassen echter wordt de Delete_( ) methode niet steeds door de provider ondersteund.
+
+* [Oefening 48][48]
+
 
 [13]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/13.pl
 [15]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/15.pl
@@ -301,3 +307,5 @@ Alhoewel de "statische" methode voor alle klassen beschikbaar is, wordt het aanb
 [40]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/40.pl
 [44]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/44.pl
 [45]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/45.pl
+[46]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/46.pl
+[48]: https://github.com/EMerckx/operating-systems-3/blob/master/set4/48.pl

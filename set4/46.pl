@@ -36,6 +36,18 @@ foreach my $method (in $methods){
 
 # get the return values of the 
 #my %returnvals = createReturnValueHash($methods->Item("create"));
+# method doesn't work, hard coded based on msdn library
+my %returnvals = ();
+$returnvals{0} = "Success";
+$returnvals{2} = "Access Denied";
+$returnvals{8} = "Unknown Failure";
+$returnvals{9} = "Invalid Name";
+$returnvals{10} = "Invalid Level";
+$returnvals{21} = "Invalid Parameter";
+$returnvals{22} = "Duplicate Share";
+$returnvals{23} = "Redirected Path";
+$returnvals{24} = "Unknown Device or Directory";
+$returnvals{25} = "Net Name Not Found";
 
 # get the input parameters
 my $inparam = $methods->{"create"}->{"inparameters"};
@@ -50,6 +62,15 @@ $inparam->{"Description"} = "A shared folder created by Ewout.";
 # If this parameter is not supplied or is NULL, then Everyone has  
 # read access to the share.
 
+# execute method and receive the output parameters
+my $outparam = $class->ExecMethod_("create", $inparam);
+
+# show output on screen
+printf "\nExecuted the Create method \n";
+printf "\tReturn value : %s \n",
+	$outparam->{"returnvalue"};
+printf "\tMore readable: %s \n",
+	$returnvals{$outparam->{"returnvalue"}};
 
 #--------------------------------------------------------------------
 
